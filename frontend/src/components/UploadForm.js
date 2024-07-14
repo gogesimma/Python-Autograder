@@ -14,7 +14,11 @@ const UploadForm = () => {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('http://localhost:8000/upload.php', formData);
+      const response = await axios.post('http://localhost:8000/upload.php', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       console.log('File uploaded successfully:', response.data);
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -30,3 +34,4 @@ const UploadForm = () => {
 };
 
 export default UploadForm;
+
