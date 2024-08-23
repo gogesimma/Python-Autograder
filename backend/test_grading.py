@@ -1,5 +1,5 @@
 # test_grading.py
-import pytest
+
 from grading import run_test_case
 
 def test_run_test_case():
@@ -14,7 +14,7 @@ output = int(input_data) ** 2
 print(output)
         """)
 
-    result, output = run_test_case(student_code_path, test_case)
+    result, output = run_test_case(student_code_path, test_case)    
     print(f"Result: {result}, Output: '{output}', Expected: '{test_case['output']}'")
     assert result == True, f"Expected True but got {result}. Output: {output}"
 

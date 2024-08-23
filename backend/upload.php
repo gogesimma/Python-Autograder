@@ -1,21 +1,25 @@
 <?php
+// upload.php
+include 'db.php';
+
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
-    $file = $_FILES['file'];
+    $user_id = $_SESSION['user_id'];
+    $upload_dir = 'uploads/';
+    $uploaded_file = $upload_dir . basename($_FILES['file']['name']);
 
-    // Define the upload directory and file path
-    $uploadDir = 'uploads/';
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-    }
-    $uploadFile = $uploadDir . basename($file['name']);
-
-    // Move the uploaded file to the target directory
-    if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
-        echo 'File uploaded successfully: ' . $uploadFile;
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaded_file)) {
+        $stmt = $mysqli->prepare("INSERT INTO submissions (user_id, file_path) VALUES (?, ?)");
+        $stmt->bind_param('is', $user_id, $uploaded_file);
+        $stmt->execute();
+        echo "File uploaded successfully!";
     } else {
-        echo 'Error uploading file';
+        echo "Error uploading file.";
     }
 } else {
-    echo 'No file uploaded';
+    echo "Invalid request.";
 }
-?>
+
+
+

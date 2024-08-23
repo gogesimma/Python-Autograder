@@ -1,0 +1,5 @@
+[
+    {"input": "5\n", "output": "25\n"},
+    {"input": "3\n", "output": "9\n"},
+    {"input": "10\n", "output": "100\n"}
+]
