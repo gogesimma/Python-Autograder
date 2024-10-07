@@ -1,0 +1,27 @@
+{
+    "name": "student/backend",
+    "description": "Python autograder",
+    "type": "all",
+    "license": "all",
+    "autoload": {
+        "psr-4": {
+            "Student\\Backend\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Simakahle Goge"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "openai-php/client": "dev-main",
+        "symfony/http-client": "7.2.x-dev",
+        "nyholm/psr7": "1.8.x-dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

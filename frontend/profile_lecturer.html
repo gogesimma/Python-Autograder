@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Profile</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="lectureto.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lecturer.html">Submissions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profile_lecturer.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <h2 id="lecturer-name"></h2>
+        <p id="lecturer-username" class="text-muted"></p>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">User details</h5>
+                <p>Email address: <span id="lecturer-email"></span></p>
+                <a href="#" class="btn btn-outline-primary">Edit profile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch the lecturer data from the backend
+        fetch('profile_lecturer_data.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('lecturer-name').textContent = `${data.name} ${data.surname}`;
+                document.getElementById('lecturer-username').textContent = `(${data.username})`;
+                document.getElementById('lecturer-email').textContent = data.email;
+            });
+    </script>
+
+</body>
+</html>

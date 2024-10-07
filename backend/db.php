@@ -1,19 +1,21 @@
+
 <?php
+
 // Database connection parameters
-$host = '127.0.0.1';
-$dbname = 'Autograder';
+$dsname= 'autograder';
+$hostname ='127.0.0.1';
 $username = 'root';
-$password = 'simakahle@10#';
+$password = ''; 
 
-// Create a MySQLi connection
-$conn =  mysqli_connect($host, $username, $password, $dbname);
+// Create connection
+$conn = new mysqli($hostname, $username, $password, $dsname);
 
-// Check the connection
-if (!$conn) {
-    die("Connection failed: " . $mysqli->connect_error);
-} else {
-    echo "Connected successfully to the database!";
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
+echo "Connected successfully";
+
 
 
 
